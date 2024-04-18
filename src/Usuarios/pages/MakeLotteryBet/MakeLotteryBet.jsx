@@ -49,7 +49,7 @@ export const MakeLotteryBet = () => {
     const lotteryData = Object.fromEntries(formData);
     lotteryData.betDate = new Date().toLocaleDateString();
     lotteryData.selectedNumber = selectedNumber;
-    lotteryData.betPrice = lottery[0].betPrice;
+    lotteryData.betPrice = lottery && lottery[0] ? lottery[0].betPrice : undefined;
     lotteryData.lotteryId = params.id;
     console.log(lotteryData);
     const lotteryId = generateRandomCode();
@@ -121,7 +121,8 @@ export const MakeLotteryBet = () => {
                 label="Tu mail"
               />
               <p>Número seleccionado: {selectedNumber}</p>
-              <p>Precio de la apuesta: {lottery?.[0].betPrice}€</p>
+              lottery && lottery[0] ? lottery[0].betPrice : undefined;
+              <p>Precio de la apuesta: {lottery && lottery[0] ? lottery[0].betPrice : undefined}€</p>
             </div>
             {error && <p className="lottery-error">{error}</p>}
             <div className="submit-bet center-items">
